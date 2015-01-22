@@ -1,16 +1,9 @@
 _gradle()
 {
   local cur=${COMP_WORDS[COMP_CWORD]}
-  local gradle_cmd='gradle'
-  if [[ -x ./gradlew ]]; then
-    gradle_cmd='./gradlew'
-  fi
-  if [[ -x ../gradlew ]]; then
-    gradle_cmd='../gradlew'
-  fi
-
+  local gradle_cmd='gw'
   local commands=''
-  local cache_dir="$HOME/.gradle_tabcompletion"
+  local cache_dir="$HOME/.gradle_completion"
   mkdir -p $cache_dir
 
   # TODO: include the gradle version in the checksum?  It's kinda slow
@@ -37,6 +30,4 @@ _gradle()
   fi
   COMPREPLY=( $(compgen -W "$commands" -- $cur) )
 }
-complete -F _gradle gradle
-complete -F _gradle gradlew
-complete -F _gradle ./gradlew
+complete -F _gradle gw
